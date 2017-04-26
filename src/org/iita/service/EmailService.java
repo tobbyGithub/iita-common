@@ -1,0 +1,63 @@
+/**
+ * 
+ */
+package org.iita.service;
+
+import java.util.Collection;
+
+import org.iita.service.impl.JavaMail;
+
+/**
+ * Email service provides a generic interface to allow applications to send out emails. The commonly used implementation of this interface is {@link JavaMail}
+ * that uses <a href="http://java.sun.com/products/javamail/">Sun's JavaMail</a>
+ * 
+ * @author mobreza
+ */
+public interface EmailService {
+	/**
+	 * Send simple email with subject and body to recipient from sender's address
+	 * 
+	 * @param sender
+	 * @param recipient
+	 * @param subject
+	 * @param body
+	 * @throws EmailException
+	 */
+	void sendEmail(String sender, String recipient, String subject, String body) throws EmailException;
+
+	/**
+	 * @param sender
+	 * @param mail
+	 * @param emailSubject
+	 * @param emailText
+	 * @param string
+	 * @param output
+	 * @throws EmailException
+	 */
+	void sendEmailWithAttachment(String sender, String recipient, Collection<String> cc, String emailSubject, String emailText, String string, byte[] output)
+			throws EmailException;
+
+	/**
+	 * @param object
+	 * @param addresses
+	 * @param recipients
+	 * @param subject
+	 * @param body
+	 * @throws EmailException
+	 */
+	void sendEmail(String sender, String[] recipients, String[] ccRecipients, String subject, String body) throws EmailException;
+
+	/**
+	 * @param object
+	 * @param addresses
+	 * @param recipients
+	 * @param subject
+	 * @param body
+	 * @param htmlBody
+	 * @throws EmailException
+	 */
+	void sendEmail(String sender, String[] recipients, String[] ccRecipients, String subject, String body, String htmlBody) throws EmailException;
+
+	void sendEmailWithAttachment(String sender, String recipient, Collection<String> cc, String subject, String body, String htmlBody, String attachmentName,
+			byte[] attachmentData) throws EmailException;
+}
